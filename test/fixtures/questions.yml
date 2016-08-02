@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyString
+  choice_a: MyString
+  choice_b: MyString
+  choice_c: MyString
+  choice_d: MyString
+  count_a: 1
+  count_b: 1
+  count_c: 1
+  count_d: 1
+
+two:
+  question: MyString
+  choice_a: MyString
+  choice_b: MyString
+  choice_c: MyString
+  choice_d: MyString
+  count_a: 1
+  count_b: 1
+  count_c: 1
+  count_d: 1

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="content-outer" class="question-content">
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <%= link_to "home", root_path %>
+      <%= link_to "faq", about_path %>
+    </div>
+  </body>
+</html>

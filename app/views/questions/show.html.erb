@@ -1,0 +1,6 @@
+<h2><%= @question.question %></h2>
+<div id="choices-outer">
+  <% @choices.each do |choice| %>
+    <p><%= choice %></p>
+  <% end %>
+</div>
