@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:header) %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="header">
+      <h1><%= yield(:header) %></h1>
+      <div class="header-links">
+        <%= link_to "home", root_path %>
+        <%= link_to "faq", about_path %>
+        <%= link_to "just play already", '#' %>
+      </div>
+    </div>
+    <div id="content-outer">
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <%= link_to "home", root_path %>
+      <%= link_to "faq", about_path %>
+      <%= link_to "just play already", '#' %>
+    </div>
+  </body>
+</html>
