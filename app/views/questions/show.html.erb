@@ -1,6 +1,8 @@
-<h2><%= @question.question %></h2>
+<h2 class="question"><%= @question.question %></h2>
 <div id="choices-outer">
-  <% @choices.each do |choice| %>
-    <p><%= choice %></p>
+  <% @choices.each_with_index do |choice, index| %>
+    <%= link_to choice, 'javascript:;',
+        style: "transition-delay: #{index*0.1}s",
+        onclick: "$('a').attr('onclick', ''); $(this).addClass('selected'); $('a').addClass('disabled'); setTimeout(function() {window.location = '#{choose_path(id: @question.id, choice: ('a'...'z').to_a[index])}'}, 2000)" %>
   <% end %>
 </div>

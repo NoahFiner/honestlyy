@@ -1,6 +1,8 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$theme-color: #ff352b;
+
 .question-content {
   height: 100vh;
   width: 100vw !important;
@@ -8,10 +10,10 @@
 }
 
 #footer {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
-h2:first-of-type {
+h2.question {
   margin-top: 0 !important;
   padding-left: 10px;
 }
@@ -23,10 +25,29 @@ h2:first-of-type {
   align-items: flex-end;
   justify-content: space-around;
 
-  p {
+  a {
     width: 20vw;
+    font-size: 5vw;
+    text-decoration: none;
     text-align: center;
     font-weight: 500;
     margin-bottom: 20px;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 0.25s, color 0.25s;
+
+    &:hover {
+      color: $theme-color;
+    }
+
+    &.disabled {
+      color: #aaa;
+      transform: scale(0.7);
+    }
+
+    &.selected {
+      transform: scale(1.2) !important;
+      color: $theme-color !important;
+    }
   }
 }

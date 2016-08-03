@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= yield(:header) %></title>
+    <base href="http://localhost:3000"/>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,7 +16,7 @@
       <div class="header-links">
         <%= link_to "home", root_path %>
         <%= link_to "faq", about_path %>
-        <%= link_to "just play already", '#' %>
+        <%= link_to "just play already", random_path %>
       </div>
     </div>
     <div id="content-outer">
@@ -24,7 +25,7 @@
     <div id="footer">
       <%= link_to "home", root_path %>
       <%= link_to "faq", about_path %>
-      <%= link_to "just play already", '#' %>
+      <%= link_to "just play already", random_path %>
     </div>
   </body>
 </html>
