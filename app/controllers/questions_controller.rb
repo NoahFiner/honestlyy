@@ -2,6 +2,16 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @choices = [@question.choice_a, @question.choice_b, @question.choice_c, @question.choice_d]
+    @counts = [@question.count_a, @question.count_b, @question.count_c, @question.count_d]
+    total = @counts.inject(0, :+)
+    @heights = []
+    @counts.each do |count|
+      if total == 0
+        @heights.push(0)
+      else
+        @heights.push((Float(count)/total)*100)
+      end
+    end
     render :layout => 'question_layout'
   end
 
@@ -18,7 +28,7 @@ class QuestionsController < ApplicationController
       @question.count_d += 1
     end
     @question.save
-    
+
     puts "count of question #{params[:id]}"
     puts [@question.count_a, @question.count_b, @question.count_c, @question.count_d]
     redirect_to random_path

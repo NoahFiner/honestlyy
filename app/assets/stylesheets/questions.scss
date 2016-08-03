@@ -18,6 +18,40 @@ h2.question {
   padding-left: 10px;
 }
 
+#bar-background {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+
+  .bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 15vw;
+    height: 0;
+    background-color: $theme-color;
+    transition: height 0.25s;
+
+    &.inactive {
+      height: 0 !important;
+    }
+
+    p {
+      color: white;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      font-weight: 900;
+      font-size: 5vw;
+    }
+  }
+}
+
 #choices-outer {
   height: calc(100vh - 103px);
   width: 100vw;
@@ -34,10 +68,14 @@ h2.question {
     margin-bottom: 20px;
     transform: scale(1);
     transform-origin: center center;
-    transition: transform 0.25s, color 0.25s;
+    transition: transform 0.25s, color 0.25s, margin-bottom 0.25s;
 
     &:hover {
       color: $theme-color;
+    }
+
+    &.inactive {
+      margin-bottom: 20px !important;
     }
 
     &.disabled {

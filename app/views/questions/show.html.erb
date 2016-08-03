@@ -1,8 +1,31 @@
 <h2 class="question"><%= @question.question %></h2>
 <div id="choices-outer">
+  <div id="bar-background">
+    <% @counts.each_with_index do |count, index| %>
+      <div id="bar-<%= index %>" class="bar inactive" style="height: <%= @heights[index]*0.8 + 2 %>vh">
+        <p><%= count %></p>
+      </div>
+    <% end %>
+  </div>
   <% @choices.each_with_index do |choice, index| %>
     <%= link_to choice, 'javascript:;',
-        style: "transition-delay: #{index*0.1}s",
-        onclick: "$('a').attr('onclick', ''); $(this).addClass('selected'); $('a').addClass('disabled'); setTimeout(function() {window.location = '#{choose_path(id: @question.id, choice: ('a'...'z').to_a[index])}'}, 2000)" %>
+        id: "choice-#{index}",
+        class: "choice inactive",
+        style: "margin-bottom: #{@heights[index]*0.8 + 2}vh",
+        href: choose_path(id: @question.id, choice: ("a"..."z").to_a[index]) %>
   <% end %>
 </div>
+<script>
+$(document).ready(function() {
+  $(".choice").click(function(event) {
+    event.preventDefault();
+    $(this).addClass("selected");
+    $(".choice").addClass("disabled");
+    $(".bar, .choice").removeClass("inactive");
+    var that = this;
+    setTimeout(function() {
+      window.location = $(that).attr("href");
+    }, 2000)
+  });
+});
+</script>
