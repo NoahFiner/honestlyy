@@ -2,7 +2,7 @@
 <div id="choices-outer">
   <div id="bar-background">
     <% @counts.each_with_index do |count, index| %>
-      <div id="bar-<%= index %>" class="bar inactive" style="height: <%= @heights[index]*0.8 + 2 %>vh">
+      <div id="bar-<%= index %>" class="bar inactive" style="height: 0">
         <p><%= count %></p>
       </div>
     <% end %>
@@ -11,14 +11,14 @@
     <%= link_to choice, 'javascript:;',
         id: "choice-#{index}",
         class: "choice inactive",
-        style: "margin-bottom: #{@heights[index]*0.8 + 2}vh",
+        style: "margin-bottom: 0",
         href: choose_path(id: @question.id, choice: ("a"..."z").to_a[index]) %>
   <% end %>
 </div>
 <script>
-var total = <%= @total %>;
 var counts = <%= @counts %>;
-var heights = <%= @heights %>;
+var total = counts.reduce(function(a, b) { return a + b; }, 0);
+var heights = [0, 0, 0, 0];
 var updateHeights = function(choice) {
   total++;
   console.log(counts);
