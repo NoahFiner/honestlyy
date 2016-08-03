@@ -16,9 +16,27 @@
   <% end %>
 </div>
 <script>
+var total = <%= @total %>;
+var counts = <%= @counts %>;
+var heights = <%= @heights %>;
+var updateHeights = function(choice) {
+  total++;
+  console.log(counts);
+  counts[choice]++;
+  console.log(counts);
+  $("#bar-"+choice+" > p").html(counts[choice]);
+  for(i = 0; i < counts.length; i++) {
+    heights[i] = (counts[i]/total)*100;
+    $("#choice-"+i).css("margin-bottom", (heights[i]*0.8 + 2)+"vh");
+    $("#bar-"+i).css("height", (heights[i]*0.8 + 2)+"vh");
+  }
+}
+
 $(document).ready(function() {
   $(".choice").click(function(event) {
     event.preventDefault();
+    var choice = $(this).attr("id").substr(7);
+    updateHeights(choice);
     $(this).addClass("selected");
     $(".choice").addClass("disabled");
     $(".bar, .choice").removeClass("inactive");
