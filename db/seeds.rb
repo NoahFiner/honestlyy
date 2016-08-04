@@ -1,33 +1,43 @@
-used_letters = []
-5.times do |i|
-  letters = []
-  4.times do
-    letter = ('a'...'z').to_a[rand(('a'...'z').to_a.length)]
-    while used_letters.include? letter
-      letter = ('a'...'z').to_a[rand(('a'...'z').to_a.length)]
-    end
-    letters.push(letter)
-  end
-  Question.create(question: "Which letter is the best out of these four?",
-                  choice_a: letters[0],
-                  choice_b: letters[1],
-                  choice_c: letters[2],
-                  choice_d: letters[3])
+def createQuestion(question, a, b, c, d)
+  Question.create(question: question,
+                  choice_a: a,
+                  choice_b: b,
+                  choice_c: c,
+                  choice_d: d)
 end
 
-used_numbers = []
-5.times do |i|
-  numbers = []
+def questionFromArray(question, array)
+  options = []
+  used_options = []
   4.times do
-    number = rand(100)
-    while used_numbers.include? number
-      number = ('a'...'z').to_a[rand(('a'...'z').to_a.length)]
+    option = array[rand(array.length)]
+    while used_options.include? option
+      option = array[rand(array.length)]
     end
-    numbers.push(number)
+    options.push(option)
+    used_options.push(option)
   end
-  Question.create(question: "Which number is the best out of these four?",
-                  choice_a: numbers[0],
-                  choice_b: numbers[1],
-                  choice_c: numbers[2],
-                  choice_d: numbers[3])
+  createQuestion(question,
+                options[0], options[1], options[2], options[3])
 end
+
+5.times do |i|
+  questionFromArray("Which of these letters is the best?", ('a'...'z').to_a)
+end
+
+5.times do |i|
+  questionFromArray("Which of these numbers is the best?", (1...100).to_a)
+end
+
+3.times do |i|
+  questionFromArray("Which of these negative numbers is the best?", (-100...-1).to_a)
+end
+
+2.times do |i|
+  questionFromArray("Which single-digit number is the best?", (1...9).to_a)
+end
+
+createQuestion("Which mathematical operator is the best?", "+", "-", "*", "/")
+createQuestion("Which of these punctuation marks is the best?", ".", ",", "!", "?")
+createQuestion("Which of these parentheses is the best?", "{}", "()", "[]", "<>")
+createQuestion("Which direction is the best?", "North", "South", "East", "West")

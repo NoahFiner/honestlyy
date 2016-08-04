@@ -5,6 +5,7 @@
     <base href="http://localhost:3000"/>
     <%= csrf_meta_tags %>
 
+    <%= favicon_link_tag "favicon.ico" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -19,7 +20,7 @@
         <%= link_to "just play already", random_path %>
       </div>
     </div>
-    <div id="content-outer">
+    <div id="content-outer" class="hidden">
       <%= yield %>
     </div>
     <div id="footer">
@@ -27,5 +28,14 @@
       <%= link_to "faq", about_path %>
       <%= link_to "just play already", random_path %>
     </div>
+    <script>
+    var hideTimeout, redirectTimeout;
+    $(document).ready(function() {
+      clearTimeout(hideTimeout);
+      clearTimeout(redirectTimeout);
+      $("#timer").stop();
+      $("#content-outer").removeClass("hidden");
+    });
+    </script>
   </body>
 </html>

@@ -50,6 +50,37 @@ $theme-color: #ff352b;
   min-height: calc(100vh - 325px);
   margin-left: auto;
   margin-right: auto;
+  pointer-events: auto;
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 0.25s, opacity 0.25s;
+
+  &.hidden {
+    transform: translateY(30px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  h3 {
+    margin: 100px auto;
+    text-align: center;
+    font-size: 100px;
+    width: auto;
+
+    span {
+      border-bottom: 5px solid $theme-color;
+    }
+  }
+
+  a {
+    font-weight: 500;
+    color: #000;
+    transition: color 0.25s;
+
+    &:hover {
+      color: $theme-color;
+    }
+  }
 }
 
 h2 {

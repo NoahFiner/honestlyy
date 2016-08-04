@@ -1,8 +1,5 @@
-<% provide :header, "honestlyy" %>
-<h2>This is the landing page</h2>
-<p>Now you know that this game has a landing page.</p>
-<p>This is probably temporary.</p>
+<% provide :header, "home" %>
+<h3><%= render 'layouts/logo' %></h3>
+<p style="font-size: 30px; text-align: center; margin-bottom: 100px"><%= link_to "Click here to play.", random_path %></p>
 <h2>Do you have any questions?</h2>
 <p>You should probably visit the incredibly helpful <%= link_to "FAQ", about_path %></p>
-<h2>Do you just want to play?</h2>
-<p>Why wouldn't you? <%= link_to "Here it is.", random_path %></p>

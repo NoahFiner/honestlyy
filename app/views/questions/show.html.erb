@@ -1,8 +1,11 @@
+<% provide :title, "honestlyy" %>
+
 <h2 class="question"><%= @question.question %></h2>
+<div id="timer" class="start"></div>
 <div id="choices-outer">
   <div id="bar-background">
     <% @counts.each_with_index do |count, index| %>
-      <div id="bar-<%= index %>" class="bar inactive" style="height: 0">
+      <div id="bar-<%= index %>" class="bar inactive" style="height: 0; transition-delay: <%= index*0.1 %>s">
         <p><%= count %></p>
       </div>
     <% end %>
@@ -11,12 +14,15 @@
     <%= link_to choice, 'javascript:;',
         id: "choice-#{index}",
         class: "choice inactive",
-        style: "margin-bottom: 0",
+        style: "margin-bottom: 0; transition: transform 0.25s, color 0.25s, margin-bottom 0.25s; transition-delay: #{index*0.1}s",
         href: choose_path(id: @question.id, choice: ("a"..."z").to_a[index]) %>
   <% end %>
 </div>
+
 <script>
+var hideTimeout, redirectTimeout;
 var counts = <%= @counts %>;
+counts[0]--;
 var total = counts.reduce(function(a, b) { return a + b; }, 0);
 var heights = [0, 0, 0, 0];
 var updateHeights = function(choice) {
@@ -27,13 +33,41 @@ var updateHeights = function(choice) {
   $("#bar-"+choice+" > p").html(counts[choice]);
   for(i = 0; i < counts.length; i++) {
     heights[i] = (counts[i]/total)*100;
-    $("#choice-"+i).css("margin-bottom", (heights[i]*0.8 + 2)+"vh");
-    $("#bar-"+i).css("height", (heights[i]*0.8 + 2)+"vh");
+    $("#choice-"+i).css("margin-bottom", (heights[i]*0.6 + 12)+"vh");
+    $("#bar-"+i).css("height", (heights[i]*0.6 + 12)+"vh");
   }
+}
+updateHeights(0);
+
+var finish = function() {
+  $(".choice").addClass("disabled");
+  $(".bar, .choice").removeClass("inactive");
+  var that = this;
+  hideTimeout = setTimeout(function() {
+    $("#content-outer").addClass("hidden");
+  }, 2000);
+  redirectTimeout = setTimeout(function() {
+    window.location = "/random";
+  }, 2500);
 }
 
 $(document).ready(function() {
+  $("#timer").stop();
+  $("#content-outer").removeClass("hidden");
+  $("#content-outer.question-content").ready(function() {
+    $("#timer").animate({
+      width: "100vw"
+    }, 5000, 'linear', function() {finish();});
+  });
+
+  $("a").click(function() {
+    clearTimeout(hideTimeout);
+    clearTimeout(redirectTimeout);
+    $("#timer").stop();
+  });
+
   $(".choice").click(function(event) {
+    $("#timer").stop();
     event.preventDefault();
     var choice = $(this).attr("id").substr(7);
     updateHeights(choice);
@@ -41,9 +75,12 @@ $(document).ready(function() {
     $(".choice").addClass("disabled");
     $(".bar, .choice").removeClass("inactive");
     var that = this;
-    setTimeout(function() {
+    hideTimeout = setTimeout(function() {
+      $("#content-outer").addClass("hidden");
+    }, 2000);
+    redirectTimeout = setTimeout(function() {
       window.location = $(that).attr("href");
-    }, 2000)
+    }, 2500);
   });
 });
 </script>

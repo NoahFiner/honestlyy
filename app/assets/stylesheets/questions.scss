@@ -4,25 +4,42 @@
 $theme-color: #ff352b;
 
 .question-content {
+  top: 0;
   height: 100vh;
   width: 100vw !important;
   margin: 0;
+  margin-top: -83px;
 }
 
 #footer {
+  z-index: 1000;
   margin-top: 0;
 }
 
 h2.question {
+  top: 0;
   margin-top: 0 !important;
+  padding: 0;
   padding-left: 10px;
+  position: absolute;
+  width: 100vw;
+  border-bottom: 0;
+}
+
+#timer {
+  width: 0;
+  position: absolute;
+  top: 70px;
+  height: 5px;
+  background-color: $theme-color;
+
 }
 
 #bar-background {
   height: 100vh;
   width: 100vw;
   position: absolute;
-  z-index: -1;
+  z-index: -10;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
@@ -33,10 +50,12 @@ h2.question {
     justify-content: center;
     width: 15vw;
     height: 0;
+    opacity: 1;
     background-color: $theme-color;
     transition: height 0.25s;
 
     &.inactive {
+      opacity: 0;
       height: 0 !important;
     }
 
@@ -53,8 +72,10 @@ h2.question {
 }
 
 #choices-outer {
-  height: calc(100vh - 103px);
+  height: 100vh;
   width: 100vw;
+  z-index: -1;
+  margin-top: 83px;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
@@ -65,13 +86,15 @@ h2.question {
     text-decoration: none;
     text-align: center;
     font-weight: 500;
-    margin-bottom: 20px;
     transform: scale(1);
     transform-origin: center center;
+    margin-bottom: 20px;
+    pointer-events: auto;
     transition: transform 0.25s, color 0.25s, margin-bottom 0.25s;
 
     &:hover {
       color: $theme-color;
+      transform: scale(1.2);
     }
 
     &.inactive {
@@ -79,6 +102,7 @@ h2.question {
     }
 
     &.disabled {
+      pointer-events: none;
       color: #aaa;
       transform: scale(0.7);
     }

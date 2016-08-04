@@ -22,6 +22,10 @@
    font-weight: 300;
  }
 
+ body {
+   overflow-x: hidden;
+ }
+
 .logo {
   font-weight: 500;
 }
@@ -32,6 +36,7 @@
 }
 
 #footer {
+  z-index: 100000;
   margin-top: 100px;
   display: flex;
   background-color: #ff352b;
