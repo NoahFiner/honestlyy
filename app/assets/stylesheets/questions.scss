@@ -13,7 +13,12 @@ $theme-color: #ff352b;
 
 #footer {
   z-index: 1000;
-  margin-top: 0;
+  transform: translateY(0);
+  transition: transform 0.25s;
+
+  &.footer-show {
+    transform: translateY(-100px)
+  }
 }
 
 h2.question {
@@ -38,6 +43,7 @@ h2.question {
 #bar-background {
   height: 100vh;
   width: 100vw;
+  margin-bottom: 0;
   position: absolute;
   z-index: -10;
   display: flex;
@@ -79,6 +85,12 @@ h2.question {
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
+  transform: translateY(0);
+  transition: transform 0.25s;
+
+  &.footer-show {
+    transform: translateY(-100px)
+  }
 
   a {
     width: 20vw;
@@ -111,5 +123,31 @@ h2.question {
       transform: scale(1.2) !important;
       color: $theme-color !important;
     }
+  }
+}
+
+#scroll-down {
+  font-size: 50px;
+  color: $theme-color;
+  opacity: 0.5;
+  position: fixed;
+  left: 95vw;
+  cursor: pointer;
+  top: 0;
+  pointer-events: auto;
+  transform: rotate(0deg);
+  transform-origin: center center;
+  transition: opacity 0.25s, transform 0.25s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+
+  &.footer-show {
+    transform: rotate(180deg);
   }
 }

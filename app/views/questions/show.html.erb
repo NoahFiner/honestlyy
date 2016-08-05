@@ -18,6 +18,7 @@
         href: choose_path(id: @question.id, choice: ("a"..."z").to_a[index]) %>
   <% end %>
 </div>
+<p id="scroll-down">&#x2303;</p>
 
 <script>
 var hideTimeout, redirectTimeout;
@@ -40,7 +41,8 @@ var updateHeights = function(choice) {
 updateHeights(0);
 
 var finish = function() {
-  $(".choice").addClass("disabled");
+  $("#footer, #choices-outer, #scroll-down").removeClass("footer-show");
+  $(".choice, #scroll-down").addClass("disabled");
   $(".bar, .choice").removeClass("inactive");
   var that = this;
   hideTimeout = setTimeout(function() {
@@ -60,7 +62,12 @@ $(document).ready(function() {
     }, 5000, 'linear', function() {finish();});
   });
 
+  $("#scroll-down").click(function() {
+    $("#footer, #choices-outer, #scroll-down").toggleClass("footer-show")
+  });
+
   $("a").click(function() {
+    $("*").removeClass("footer-show");
     clearTimeout(hideTimeout);
     clearTimeout(redirectTimeout);
     $("#timer").stop();
@@ -72,7 +79,7 @@ $(document).ready(function() {
     var choice = $(this).attr("id").substr(7);
     updateHeights(choice);
     $(this).addClass("selected");
-    $(".choice").addClass("disabled");
+    $(".choice, #scroll-down").addClass("disabled");
     $(".bar, .choice").removeClass("inactive");
     var that = this;
     hideTimeout = setTimeout(function() {

@@ -31,6 +31,7 @@
     <script>
     var hideTimeout, redirectTimeout;
     $(document).ready(function() {
+      $("*").removeClass("footer-show");
       clearTimeout(hideTimeout);
       clearTimeout(redirectTimeout);
       $("#timer").stop();

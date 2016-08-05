@@ -46,6 +46,6 @@ class QuestionsController < ApplicationController
       cookies[:visited_questions] = rand_question.to_s
     end
     puts "redirecting to #{rand_question}"
-    redirect_to questions_show_path(id: rand_question)
+    redirect_to "/questions/#{rand_question}"
   end
 end
