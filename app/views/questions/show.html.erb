@@ -14,7 +14,7 @@
     <%= link_to choice, 'javascript:;',
         id: "choice-#{index}",
         class: "choice inactive",
-        style: "margin-bottom: 0; transition: transform 0.25s, color 0.25s, margin-bottom 0.25s; transition-delay: #{index*0.1}s",
+        style: "margin-bottom: 0; transition: transform 0.25s, color 0.25s, margin-bottom 0.25s #{index*0.1}s;",
         href: choose_path(id: @question.id, choice: ("a"..."z").to_a[index]) %>
   <% end %>
 </div>

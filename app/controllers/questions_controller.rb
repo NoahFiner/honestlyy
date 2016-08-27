@@ -1,9 +1,31 @@
 class QuestionsController < ApplicationController
+  def new
+    @question = Question.new
+  end
+
+  def create
+    @question = Question.new(question_params)
+    if @question.save
+      redirect_to '/questions/all'
+    else
+      redirect_to '/'
+    end
+  end
+
   def show
     @question = Question.find(params[:id])
     @choices = [@question.choice_a, @question.choice_b, @question.choice_c, @question.choice_d]
     @counts = [@question.count_a, @question.count_b, @question.count_c, @question.count_d]
     render :layout => 'question_layout'
+  end
+
+  def all
+    @questions = Question.all
+  end
+
+  def delete
+    @question = Question.find(params[:id]).destroy
+    redirect_to '/questions/all'
   end
 
   def edit
@@ -48,4 +70,10 @@ class QuestionsController < ApplicationController
     puts "redirecting to #{rand_question}"
     redirect_to "/questions/#{rand_question}"
   end
+
+  private
+
+    def question_params
+      params.require(:question).permit(:question, :choice_a, :choice_b, :choice_c, :choice_d)
+    end
 end

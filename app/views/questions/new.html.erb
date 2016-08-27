@@ -1,0 +1,22 @@
+<% provide :header, "new question" %>
+
+<div class="form-outer">
+  <%= form_for @question do |f| %>
+    <%= f.label :question, "Question" %>
+    <%= f.text_field :question %>
+
+    <%= f.label :choice_a, "Choice A" %>
+    <%= f.text_field :choice_a %>
+
+    <%= f.label :choice_b, "Choice B" %>
+    <%= f.text_field :choice_b %>
+
+    <%= f.label :choice_c, "Choice C" %>
+    <%= f.text_field :choice_c %>
+
+    <%= f.label :choice_d, "Choice D" %>
+    <%= f.text_field :choice_d %>
+
+    <%= f.submit "create", class: "fancy-button" %>
+  <% end %>
+</div>

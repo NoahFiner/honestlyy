@@ -58,7 +58,7 @@ end
 end
 
 2.times do
-  questionFromArray("Which article of clothing is better?", %w(shirt pants shoes hat glasses socks underwear gloves coat hoodie))
+  questionFromArray("Which article of clothing is better?", %w(shirt pants shoes hat glasses socks gloves coat hoodie))
 end
 
 2.times do
@@ -71,6 +71,10 @@ end
 
 4.times do
   questionFromArray("Which name is better?", %w(Emma Noah	Olivia Liam Sophia Mason Ava Jacob Mia Ethan James Emily Alex Harper))
+end
+
+2.times do
+  questionFromArray("Which HTML element is better?", %w(<div> <a> <p> <li> <ul> <span> <svg> <iframe> <body> <html> <head> <link> <script>))
 end
 
 questionFromArray("Which finger is better?", ["thumb", "index", "middle", "ring", "pinkie"])

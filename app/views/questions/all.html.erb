@@ -1,0 +1,15 @@
+<% provide :header, "all questions" %>
+<ol id="all-questions">
+  <% @questions.each do |question| %>
+    <li>
+      <h4>Question #<%= question.id %></h4>
+      <h2><%= question.question %></h2>
+      <p><%= question.choice_a %> - <span class="vote-amt"><%= question.count_a %> votes</span></p>
+      <p><%= question.choice_b %> - <span class="vote-amt"><%= question.count_b %> votes</span></p>
+      <p><%= question.choice_c %> - <span class="vote-amt"><%= question.count_c %> votes</span></p>
+      <p><%= question.choice_d %> - <span class="vote-amt"><%= question.count_d %> votes</span></p>
+      <%= link_to "go to", "/questions/#{question.id}" %>
+      <%= link_to "delete", "/questions/#{question.id}/delete", method: :delete, data: {confirm: "Are you sure?"} %>
+    </li>
+  <% end %>
+</ol>
