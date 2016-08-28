@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/questions', to: 'questions#create'
   get '/questions/:id', to: 'questions#show'
   get '/questions/:id/edit', to: 'questions#edit', as: 'choose'
+  get '/questions/:id/approve', to: 'questions#approve'
   get '/random', to: 'questions#random'
   delete '/questions/:id/delete', to: 'questions#delete', as: 'delete'
 

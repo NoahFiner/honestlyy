@@ -3,12 +3,20 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def approve
+    @question = Question.find(params[:id])
+    @question.approved = true
+    @question.save
+    redirect_to '/questions/all'
+  end
+
   def create
     @question = Question.new(question_params)
+    @question.approved = false
     if @question.save
-      redirect_to '/questions/all'
-    else
       redirect_to '/'
+    else
+      render 'new'
     end
   end
 
@@ -49,13 +57,14 @@ class QuestionsController < ApplicationController
 
   def random
     # cookies.delete :visited_questions
-    question_count = Question.count
-    rand_question = rand(question_count) + 1
-    if !(cookies[:visited_questions].nil?) && cookies[:visited_questions].split("-").length < question_count
+    avail_questions = Question.where(approved: true).pluck(:id)
+
+    rand_question = avail_questions[rand(avail_questions.length)]
+    if !(cookies[:visited_questions].nil?) && cookies[:visited_questions].split("-").length < avail_questions.length
       visited_questions = cookies[:visited_questions].split("-")
 
       while visited_questions.include? rand_question.to_s
-        rand_question = rand(question_count) + 1
+        rand_question = avail_questions[rand(avail_questions.length)]
       end
 
       visited_questions.push(rand_question)

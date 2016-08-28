@@ -1,0 +1,10 @@
+<% if @question.errors.any? %>
+  <div id="errors-outer">
+    <h4>Your question has <%= pluralize(@question.errors.count, "error") %>.</h4>
+    <ul>
+      <% @question.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

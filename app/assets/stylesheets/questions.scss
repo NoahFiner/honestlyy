@@ -211,6 +211,19 @@ h2.question {
     font-size: 20px;
   }
 
+  input {
+    font-size: 30px;
+    border: 1px solid transparentize($theme-color, 0.8);
+    background-color: transparent;
+    transition: border 0.25s, background-color 0.25s;
+
+    &:focus {
+      outline: 0;
+      background-color: transparentize($theme-color, 0.9);
+      border: 1px solid $theme-color;
+    }
+  }
+
   label {
     margin-top: 30px;
     border-bottom: 2.5px solid $theme-color;
@@ -231,11 +244,25 @@ h2.question {
   cursor: pointer;
   padding: 5px 10px;
   margin: 10px;
-  border: 1px solid $theme-color;
+  border: 1px solid $theme-color !important;
   color: $theme-color;
   background-color: transparent;
 
   &:hover {
-    background-color: transparentize($theme-color, 0.9);
+    background-color: transparentize($theme-color, 0.9) !important;
+  }
+}
+
+#errors-outer {
+  display: block;
+  width: 80%;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: transparentize($theme-color, 0.9) !important;
+
+  h4 {
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 10px;
   }
 }

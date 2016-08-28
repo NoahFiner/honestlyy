@@ -2,20 +2,22 @@
 
 <div class="form-outer">
   <%= form_for @question do |f| %>
+    <%= render 'shared/error_messages' %>
+    
     <%= f.label :question, "Question" %>
-    <%= f.text_field :question %>
+    <%= f.text_field :question, maxlength: 80, style: "width: 100%" %>
 
     <%= f.label :choice_a, "Choice A" %>
-    <%= f.text_field :choice_a %>
+    <%= f.text_field :choice_a, maxlength: 8 %>
 
     <%= f.label :choice_b, "Choice B" %>
-    <%= f.text_field :choice_b %>
+    <%= f.text_field :choice_b, maxlength: 8 %>
 
     <%= f.label :choice_c, "Choice C" %>
-    <%= f.text_field :choice_c %>
+    <%= f.text_field :choice_c, maxlength: 8 %>
 
     <%= f.label :choice_d, "Choice D" %>
-    <%= f.text_field :choice_d %>
+    <%= f.text_field :choice_d, maxlength: 8 %>
 
     <%= f.submit "create", class: "fancy-button" %>
   <% end %>

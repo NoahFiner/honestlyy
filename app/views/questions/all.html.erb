@@ -10,6 +10,9 @@
       <p><%= question.choice_d %> - <span class="vote-amt"><%= question.count_d %> votes</span></p>
       <%= link_to "go to", "/questions/#{question.id}" %>
       <%= link_to "delete", "/questions/#{question.id}/delete", method: :delete, data: {confirm: "Are you sure?"} %>
+      <% unless question.approved? %>
+        <%= link_to "approve", "/questions/#{question.id}/approve" %>
+      <% end %>
     </li>
   <% end %>
 </ol>
