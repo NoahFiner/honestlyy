@@ -1,0 +1,14 @@
+<% provide :header, "log in" %>
+
+<div class="form-outer">
+  <%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.submit "log in", class: "fancy-button" %>
+    <p class="aside">The only account on this site is an admin account.</p>
+  <% end %>
+</div>

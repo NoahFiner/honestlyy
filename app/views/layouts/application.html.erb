@@ -21,6 +21,9 @@
         <%= link_to "just play already", random_path %>
       </div>
     </div>
+    <% flash.each do |message_type, message| %>
+      <div class="flash <%= message_type %>"><%= message %></div>
+    <% end %>
     <div id="content-outer" class="hidden">
       <%= yield %>
     </div>

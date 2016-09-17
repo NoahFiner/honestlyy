@@ -96,3 +96,33 @@ p {
   line-height: 1.4;
   font-size: 20px;
 }
+
+.flash {
+  position: relative;
+  display: block;
+  height: 40px;
+  font-size: 30px;
+  padding: 5px 10px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5vw;
+}
+
+.flash.success {
+  border: 1px solid #21C635;
+  color: #21C635;
+  background-color: transparentize(#21C635, 0.8);
+}
+
+.flash.warning {
+  border: 1px solid #FFE82B;
+  color: #A39000;
+  background-color: transparentize(#FFE82B, 0.8);
+}
+
+.flash.danger {
+  border: 1px solid $theme-color;
+  color: $theme-color;
+  background-color: transparentize($theme-color, 0.8);
+}

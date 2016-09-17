@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :admin_check, only: [:approve, :all, :delete]
+
   def new
     @question = Question.new
   end
@@ -7,6 +9,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.approved = true
     @question.save
+    flash[:success] = "Question approved."
     redirect_to '/questions/all'
   end
 
@@ -14,8 +17,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.approved = false
     if @question.save
+      flash[:success] = "Question created! It should be approved in a little bit."
       redirect_to '/'
     else
+      flash[:danger] = "Question wasn't created. Try fixing the errors."
       render 'new'
     end
   end
@@ -28,11 +33,12 @@ class QuestionsController < ApplicationController
   end
 
   def all
-    @questions = Question.all
+    @questions = Question.all.order(created_at: :desc)
   end
 
   def delete
     @question = Question.find(params[:id]).destroy
+    flash[:success] = "Question deleted."
     redirect_to '/questions/all'
   end
 
@@ -84,5 +90,14 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:question, :choice_a, :choice_b, :choice_c, :choice_d)
+    end
+
+    def admin_check
+      puts "test"
+      puts logged_in
+      unless logged_in
+        flash[:danger] = "You'll need to log in to access this page."
+        redirect_to login_url
+      end
     end
 end
