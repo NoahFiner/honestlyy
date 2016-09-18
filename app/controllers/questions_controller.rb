@@ -93,8 +93,6 @@ class QuestionsController < ApplicationController
     end
 
     def admin_check
-      puts "test"
-      puts logged_in
       unless logged_in
         flash[:danger] = "You'll need to log in to access this page."
         redirect_to login_url

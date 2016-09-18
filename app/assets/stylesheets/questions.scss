@@ -131,7 +131,7 @@ h2.question {
   color: $theme-color;
   opacity: 0.5;
   position: fixed;
-  left: 95vw;
+  left: calc(100vw - 50px);
   cursor: pointer;
   top: 0;
   pointer-events: auto;

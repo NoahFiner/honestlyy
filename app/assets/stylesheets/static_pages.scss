@@ -13,7 +13,7 @@ $theme-color: #ff352b;
   justify-content: space-between;
 
   h1 {
-    font-size: 75px;
+    font-size: 6vw;
     margin: 25px;
     display: block;
     font-weight: 900;
@@ -21,9 +21,19 @@ $theme-color: #ff352b;
   }
 
   .header-links {
-    width: 200px;
+    width: 150px;
     height: 125px;
     padding: 15px;
+
+    &.header-admin {
+      a {
+        margin: 0;
+
+        &:first-of-type {
+          margin-top: 3px;
+        }
+      }
+    }
 
     a {
       display: block;

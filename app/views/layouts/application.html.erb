@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= yield(:header) %></title>
-    <base href="http://localhost:3000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= favicon_link_tag "favicon.ico" %>
@@ -14,11 +14,14 @@
   <body>
     <div class="header">
       <h1><%= yield(:header) %></h1>
-      <div class="header-links">
+      <div class="header-links <%= "header-admin" if logged_in %>">
         <%= link_to "home", root_path %>
-        <%= link_to "faq", about_path %>
         <%= link_to "submit a question", questions_new_path %>
         <%= link_to "just play already", random_path %>
+        <% if logged_in %>
+          <%= link_to "all questions", questions_all_path %>
+          <%= link_to "log out", logout_path, method: :delete %>
+        <% end %>
       </div>
     </div>
     <% flash.each do |message_type, message| %>

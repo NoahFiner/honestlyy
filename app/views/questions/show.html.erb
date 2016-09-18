@@ -26,6 +26,7 @@ var counts = <%= @counts %>;
 counts[0]--;
 var total = counts.reduce(function(a, b) { return a + b; }, 0);
 var heights = [0, 0, 0, 0];
+var questionHeight = 70;
 var updateHeights = function(choice) {
   total++;
   console.log(counts);
@@ -34,11 +35,12 @@ var updateHeights = function(choice) {
   $("#bar-"+choice+" > p").html(counts[choice]);
   for(i = 0; i < counts.length; i++) {
     heights[i] = (counts[i]/total)*100;
-    $("#choice-"+i).css("margin-bottom", (heights[i]*0.6 + 12)+"vh");
-    $("#bar-"+i).css("height", (heights[i]*0.6 + 12)+"vh");
+    console.log(heights);
+    biggestHeight = window.innerHeight - (questionHeight + 100)
+    $("#choice-"+i).css("margin-bottom",  biggestHeight*(heights[i]/100)+50+"px");
+    $("#bar-"+i).css("height", biggestHeight*(heights[i]/100)+50+"px");
   }
 }
-updateHeights(0);
 
 var finish = function() {
   $("#footer, #choices-outer, #scroll-down").removeClass("footer-show");
@@ -53,7 +55,16 @@ var finish = function() {
   }, 2500);
 }
 
+var windowResize = function() {
+  questionHeight = $(".question").height();
+  $("#timer").css("top", questionHeight + 20 + "px");
+}
+
 $(document).ready(function() {
+  $(window).resize(function() {
+    windowResize();
+  });
+  windowResize();
   $("#timer").stop();
   $("#content-outer").removeClass("hidden");
   $("#content-outer.question-content").ready(function() {
@@ -61,6 +72,8 @@ $(document).ready(function() {
       width: "100vw"
     }, 5000, 'linear', function() {finish();});
   });
+
+  updateHeights(0);
 
   $("#scroll-down").click(function() {
     $("#footer, #choices-outer, #scroll-down").toggleClass("footer-show")
