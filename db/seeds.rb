@@ -46,15 +46,15 @@ end
 end
 
 3.times do
-  questionFromArray("Which color is better?", %w(green blue purple magenta pink red orange yellow black brown white grey))
+  questionFromArray("Which color is better?", %w(green blue purple pink red orange yellow black brown white grey))
 end
 
 5.times do
-  questionFromArray("Which food is better?", %w(chocolate pizza ham hotdogs lettuce grapes apples pears peaches nuts eggs fish beef kale dirt mealworms chicken pork bacon waffles pancakes tissues cake sugar cupcakes))
+  questionFromArray("Which food is better?", %w(chocolate pizza ham hotdogs lettuce grapes apples pears peaches nuts eggs fish beef kale dirt pork bacon waffles tissues cake sugar))
 end
 
 2.times do
-  questionFromArray("Which drink is better?", %w(water coke tea coffee pepsi sprite lemonade gasoline))
+  questionFromArray("Which drink is better?", %w(water coke tea coffee pepsi sprite gas))
 end
 
 2.times do
@@ -74,7 +74,11 @@ end
 end
 
 2.times do
-  questionFromArray("Which HTML element is better?", %w(<div> <a> <p> <li> <ul> <span> <svg> <iframe> <body> <html> <head> <link> <script>))
+  questionFromArray("Which HTML element is better?", %w(<div> <a> <p> <li> <ul> <span> <svg> <body> <html> <head> <link> <script>))
+end
+
+3.times do
+  questionFromArray("Which zip code is better?", (10000...99999).to_a)
 end
 
 questionFromArray("Which finger is better?", ["thumb", "index", "middle", "ring", "pinkie"])
@@ -84,6 +88,9 @@ createQuestion("Which of these punctuation marks is the best?", ".", ",", "!", "
 createQuestion("Which of these parentheses is the best?", "{}", "()", "[]", "<>")
 createQuestion("Which direction is the best?", "North", "South", "East", "West")
 createQuestion("Which arrow key is the best?", "up", "down", "right", "left")
+createQuestion("Which AWSD key is the best?", "A", "W", "S", "D")
 createQuestion("Which ASCII emoji is better?", ":)", ":-)", "(:", "(-:")
 createQuestion("Which currency is better?", "dollar", "pound", "euro", "peso")
 createQuestion("Which article is better?", "a", "an", "the", "???")
+
+User.create(name: "admin", password: "ThisIsAPassword", password_confirmation: "ThisIsAPassword")
