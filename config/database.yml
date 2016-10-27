@@ -1,21 +1,23 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: inventory_development
-  host: localhost
+  database: honestlyy_development
   pool: 5
-  timeout: 5000
+  username:
+  password:
 
-test:
+test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: inventory_test
+  database: honestlyy_test
   pool: 5
-  timeout: 5000
+  username:
+  password:
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: inventory_production
+  database: honestlyy_production
   pool: 5
-  timeout: 5000
+  username:
+  password:
